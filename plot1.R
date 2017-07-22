@@ -7,12 +7,8 @@ hcp <- read.table("data/household_power_consumption.txt",
                   stringsAsFactors = FALSE,
                   colClasses = c("character","character", rep("numeric",7)), 
                   na.strings = "?")
-hcpdata <- subset(hcp, year(as.Date(Date, "%d/%m/%Y")) == 2007)
+hcpdata <- subset(hcp, Date %in% c("1/2/2007", "2/2/2007"))
 rm(hcp)
-hcpdata <- subset(hcpdata, month(as.Date(Date, "%d/%m/%Y")) == 02)
-hcpdata <- subset(hcpdata, day(as.Date(Date, "%d/%m/%Y")) <= 02)
-hcpdata <- hcpdata %>% 
-  mutate(Date = as.Date(Date, "%d/%m/%Y")) 
 
 png("plot1.png")
 par(mfrow=c(1,1))
